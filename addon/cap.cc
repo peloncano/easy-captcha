@@ -6,6 +6,10 @@
 
 
 #include "cap.h"
+
+#undef cimg_use_cpp11 
+#define cimg_display 0
+#define cimg_use_jpeg
 #include "jpeglib/CImg.h"
 
   
