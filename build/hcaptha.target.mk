@@ -3,6 +3,7 @@
 TOOLSET := target
 TARGET := hcaptha
 DEFS_Debug := \
+	'-DNODE_GYP_MODULE_NAME=hcaptha' \
 	'-D_LARGEFILE_SOURCE' \
 	'-D_FILE_OFFSET_BITS=64' \
 	'-DBUILDING_NODE_EXTENSION' \
@@ -12,10 +13,10 @@ DEFS_Debug := \
 # Flags passed to all source files.
 CFLAGS_Debug := \
 	-fPIC \
+	-pthread \
 	-Wall \
 	-Wextra \
 	-Wno-unused-parameter \
-	-pthread \
 	-m64 \
 	-g \
 	-O0
@@ -27,6 +28,7 @@ CFLAGS_C_Debug :=
 CFLAGS_CC_Debug := \
 	-fno-rtti \
 	-fno-exceptions \
+	-std=gnu++0x \
 	-fexceptions \
 	-Dcimg_display=0 \
 	-Dcimg_use_jpeg \
@@ -36,11 +38,13 @@ CFLAGS_CC_Debug := \
 	-lX11
 
 INCS_Debug := \
-	-I/home/yonatan/.node-gyp/0.9.12/src \
-	-I/home/yonatan/.node-gyp/0.9.12/deps/uv/include \
-	-I/home/yonatan/.node-gyp/0.9.12/deps/v8/include
+	-I/home/ec10176/.node-gyp/5.7.1/include/node \
+	-I/home/ec10176/.node-gyp/5.7.1/src \
+	-I/home/ec10176/.node-gyp/5.7.1/deps/uv/include \
+	-I/home/ec10176/.node-gyp/5.7.1/deps/v8/include
 
 DEFS_Release := \
+	'-DNODE_GYP_MODULE_NAME=hcaptha' \
 	'-D_LARGEFILE_SOURCE' \
 	'-D_FILE_OFFSET_BITS=64' \
 	'-DBUILDING_NODE_EXTENSION'
@@ -48,14 +52,15 @@ DEFS_Release := \
 # Flags passed to all source files.
 CFLAGS_Release := \
 	-fPIC \
+	-pthread \
 	-Wall \
 	-Wextra \
 	-Wno-unused-parameter \
-	-pthread \
 	-m64 \
-	-O2 \
-	-fno-strict-aliasing \
-	-fno-tree-vrp
+	-O3 \
+	-ffunction-sections \
+	-fdata-sections \
+	-fno-omit-frame-pointer
 
 # Flags passed to only C files.
 CFLAGS_C_Release :=
@@ -64,6 +69,7 @@ CFLAGS_C_Release :=
 CFLAGS_CC_Release := \
 	-fno-rtti \
 	-fno-exceptions \
+	-std=gnu++0x \
 	-fexceptions \
 	-Dcimg_display=0 \
 	-Dcimg_use_jpeg \
@@ -73,9 +79,10 @@ CFLAGS_CC_Release := \
 	-lX11
 
 INCS_Release := \
-	-I/home/yonatan/.node-gyp/0.9.12/src \
-	-I/home/yonatan/.node-gyp/0.9.12/deps/uv/include \
-	-I/home/yonatan/.node-gyp/0.9.12/deps/v8/include
+	-I/home/ec10176/.node-gyp/5.7.1/include/node \
+	-I/home/ec10176/.node-gyp/5.7.1/src \
+	-I/home/ec10176/.node-gyp/5.7.1/deps/uv/include \
+	-I/home/ec10176/.node-gyp/5.7.1/deps/v8/include
 
 OBJS := \
 	$(obj).target/$(TARGET)/addon/jpeglib/jaricom.o \
